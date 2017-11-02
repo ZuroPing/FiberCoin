@@ -3,8 +3,10 @@ import socket
 
 def Node(settings):
     #Broadcast joining the network
+    sock =  socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     for node in settings["nodes"]:
-        socket.sendto(bytes("broadcast "+settings["port"], "ASCII"), (node[0], node[1]))
+        print("-", node)
+        sock.sendto(bytes("broadcast "+str(settings["port"]), "ASCII"), (node[0], node[1]))
 
 def node_settings(settings):
     while True:
